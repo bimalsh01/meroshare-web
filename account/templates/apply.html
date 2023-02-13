@@ -1,0 +1,53 @@
+{% extends 'layout.html' %} {% load static %} {% block title %}<title>
+  Apply for share</title
+>{% endblock title %} {% block main_content %}
+<div class="container mt-5">
+  <div class="container">
+    <h1 class="text-center">{{name}}</h1>
+    <div class="card mb-4 shadow-3">
+      <div class="card-body">
+        <h5 class="card-title">Available IPO's</h5>
+        {% for ipo_list in ipo_list %}
+        <p class="card-text text-success">{{ipo_list}}</p>
+        {% endfor %} 
+
+      </div>
+    </div>
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-outline mb-4">
+        <input
+          name="company"
+          type="number"
+          id="form5Example1"
+          class="form-control"
+        />
+        <label class="form-label" for="form5Example1"
+          >Choose the share (TYPE 1,2)</label
+        >
+      </div>
+
+      <div class="form-outline mb-4">
+        <input name="kitta" class="form-control" type="number" />
+        <label class="form-label" for="form5Example2"
+          >Enter the quantit (EXAMPLE: 10)</label
+        >
+      </div>
+
+      <div class="form-outline mb-4">
+        <input
+          hidden
+          name="cname"
+          class="form-control"
+          value="{{company_name}}"
+        />
+      </div>
+
+      <!-- Submit button -->
+      <button type="submit" class="btn btn-primary btn-block mb-4">
+        Apply
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock main_content %}

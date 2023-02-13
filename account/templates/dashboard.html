@@ -1,0 +1,130 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}<title>Dashboard</title>{% endblock title %}
+
+{% block main_content %}
+
+<div class="m-5">
+
+    <div class=" shadow container">
+        <div class="card-header py-3 d-flex justify-content-between">
+            <p class="text-danger m-0 fw-bold">Showing all your Meroshare details</p>
+            <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+    Add <i class="fas fa-plus"></i>
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add New Meroshare Details</h5>
+          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method='post'>
+                {% csrf_token %}
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >Full Name (Test User)</label
+                >
+                <input name="name" type="text" class="form-control" id="recipient-name" />
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >DP ID (13640)</label
+                >
+                <input type="text" name="dp" class="form-control" id="recipient-name" />
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >Username (123645) </label
+                >
+                <input type="text" name="uname" class="form-control" id="recipient-name" />
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >Password (Password@123 !)</label
+                >
+                <input type="text" name="pword" class="form-control" id="recipient-name" />
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >CRN Number (456789258)</label
+                >
+                <input name="crn" type="text" class="form-control" id="recipient-name" />
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >PIN CODE (0000)</label
+                >
+                <input type="text" name="pin" class="form-control" id="recipient-name" />
+              </div>
+              
+            
+          </div>
+          <div class="modal-footer">
+           
+            <button type="submit" class="btn btn-primary">ADD INFORMATION</button>
+          </div>
+        </form>
+       
+       
+      </div>
+    </div>
+  </div>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive table" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                <table class="table my-0" id="dataTable">
+                    <thead>
+                        <tr class="fw-bolder">
+                            <th>Name</th>
+                            <th>DP ID</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>CRN</th>
+                            <th>Pin</th>
+                            <th>Delete</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                       
+                        {% for meroshare in meroshare %}
+                        <tr>
+                            <td>{{meroshare.name}}</td>
+                            <td>{{meroshare.dp}}</td>
+                            <td>{{meroshare.uname}}</td>
+                            <td>{{meroshare.pword}}</td>
+                            <td>{{meroshare.crn}}</td>
+                            <td>{{meroshare.pin}}</td>
+                            <td>
+                              <a href="/delete/{{ meroshare.id }}"
+                              onclick="return confirm('Are you want to delete?')"
+                            class='btn'>
+                               <i class="fa fa-trash" ></i>
+                           </a>
+                            <td>
+                                <button onclick="location.href='/apply/{{ meroshare.id }}'" class="btn btn-danger">Apply</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+                <div id="selected-data">
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+{% endblock main_content %}

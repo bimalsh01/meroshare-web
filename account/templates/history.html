@@ -1,0 +1,40 @@
+{% extends 'layout.html' %} {% load static %} {% block title %}<title>
+  History</title
+>{% endblock title %} {% block main_content %}
+
+<div class="m-5">
+  <div class="shadow container">
+    <div class="card-header py-3 d-flex justify-content-between">
+      <p class="text-danger m-0 fw-bold">History of Applied Share</p>
+    </div>
+    <div class="card-body">
+      <div
+        class="table-responsive table"
+        id="dataTable"
+        role="grid"
+        aria-describedby="dataTable_info"
+      >
+        <table class="table my-0" id="dataTable">
+          <thead>
+            <tr class="fw-bolder">
+              <th>Name</th>
+              <th>Applied On</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for history in history %}
+            <tr>
+              <td>{{history.appliedby_name}}</td>
+              <td>{{history.applied_on}}</td>
+              
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div id="selected-data"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock main_content %}

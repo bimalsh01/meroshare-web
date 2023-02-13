@@ -1,0 +1,40 @@
+
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light sticky-top bg-white   " style="backdrop-filter: blur(10px);"  >
+    <div class="container">
+        <a class="navbar-brand" href="/" style="width: 10%">
+            <img src='{% static 'apply.png' %}' alt="" style="width: 100%; height: 100%; object-fit: contain;">
+        </a>
+        
+            {% if request.user.is_authenticated %}
+            <ul class="navbar-nav flex-row align-items-center">
+
+             
+                </li>
+                <li class="nav-item dropdown me-3 me-lg-1">
+                    <a class="nav-link dropdown-toggle hidden-arrow text-color-50 " href="#" id="navbarDropdownMenuLink" role="button"
+                        data-mdb-toggle="dropdown" aria-expanded="false">
+                        <img src="https://i.pravatar.cc/300" class="rounded-circle "    style="object-fit: cover; height: 30px; width: 30px;" />
+
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end bg-white" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item fw-bold text-color-50" href="/history">History</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item fw-bold text-danger text-color-50" href="/logout">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            {% else %}
+            <a href="/login" class="btn rounded-pill sign-in text-color-50" type="button"> Sign in</a>
+            {% endif %}
+
+
+        </div>
+    </div>
+
+</nav>
